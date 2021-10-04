@@ -1,3 +1,4 @@
+import 'package:cuidapet_mobile/app/core/ui/widgets/cuidapet_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -12,8 +13,19 @@ class LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextFormField(),
-        TextFormField(),
+        const SizedBox(
+          height: 20,
+        ),
+        CuidapetTextFormField(
+          label: 'Login',
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        CuidapetTextFormField(
+          label: 'Senha',
+          obscureText: true,
+        ),
         const SizedBox(
           height: 20,
         ),
