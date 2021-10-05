@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cuidapet_mobile/app/core/ui/cuidapet_icons.dart';
 import 'package:cuidapet_mobile/app/core/ui/extensions/size_screen_extension.dart';
 import 'package:cuidapet_mobile/app/core/ui/extensions/theme_extension.dart';
@@ -35,7 +33,7 @@ class LoginRegisterButtons extends StatelessWidget {
           icon: Icons.mail,
           width: .42.sw,
           title: 'Cadastre-se',
-          onTap: () {},
+          onTap: () => Navigator.pushNamed(context, '/auth/register'),
         ),
       ],
     );

@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(top: 1.stausBarHeight + 30, left: 20, right: 20),
+        padding: EdgeInsets.only(top: 1.statusBarHeight + 30, left: 20, right: 20),
         width: 1.sw,
         height: 1.sh,
         child: Column(
