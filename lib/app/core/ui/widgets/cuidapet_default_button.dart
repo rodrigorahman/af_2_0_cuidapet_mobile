@@ -9,6 +9,7 @@ class CuidapetDefaultButton extends StatelessWidget {
   final Color? color;
   final Color? labelColor;
   final double borderRadius;
+  final VoidCallback? onPressed;
 
   const CuidapetDefaultButton({
     Key? key,
@@ -18,7 +19,8 @@ class CuidapetDefaultButton extends StatelessWidget {
     this.padding = 10,
     this.color,
     this.borderRadius = 10,
-    this.labelColor = Colors.white
+    this.labelColor = Colors.white,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -28,7 +30,7 @@ class CuidapetDefaultButton extends StatelessWidget {
       width: width,
       height: heigth,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(borderRadius)),
