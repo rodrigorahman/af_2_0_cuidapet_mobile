@@ -1,5 +1,6 @@
 import 'package:cuidapet_mobile/app/app_widget.dart';
 import 'package:cuidapet_mobile/app/core/application_start_config.dart';
+import 'package:cuidapet_mobile/app/core/helpers/environments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
