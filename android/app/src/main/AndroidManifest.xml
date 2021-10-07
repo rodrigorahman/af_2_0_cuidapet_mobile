@@ -2,7 +2,8 @@
     package="br.com.academiadoflutter.cuidapet_mobile">
    <application
         android:label="cuidapet_mobile"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

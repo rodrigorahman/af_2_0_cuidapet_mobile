@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "859267438871",
+    "project_id": "cuidapet-curso-af-20",
+    "storage_bucket": "cuidapet-curso-af-20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859267438871:android:f0bc89335bd3d0c4b17f52",
+        "android_client_info": {
+          "package_name": "br.com.academiadoflutter.cuidapet_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859267438871-kj6nnuumqjokleo1heogo3kapec98v0a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.academiadoflutter.cuidapet_mobile",
+            "certificate_hash": "ac1b1f8fd50ecca1b18b66ababf12c763100adeb"
+          }
+        },
+        {
+          "client_id": "859267438871-ddlqriikgfbgkknm48d92m9dpcjdlj7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwUF9zhvU7IFbhNTa3pAeApskBFybVPqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859267438871-ddlqriikgfbgkknm48d92m9dpcjdlj7u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
