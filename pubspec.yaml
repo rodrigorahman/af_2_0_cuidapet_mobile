@@ -26,7 +26,7 @@ dependencies:
   flutter_modular: ^4.1.0+1
   mobx: ^2.0.4
   flutter_mobx: ^2.0.2
-  asuka: ^2.0.0-nullsafety.3
+  asuka: ^2.0.0
   dio: ^4.0.0
   flutter_screenutil: ^5.0.0+2
 
