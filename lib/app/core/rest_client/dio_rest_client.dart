@@ -188,7 +188,7 @@ class DioRestClient implements RestClient {
         data: data,
         queryParameters: queryParameters,
         options: Options(
-          headers: headers,
+          headers: headers, method: method
         ),
       );
       return RestClientResponse(
