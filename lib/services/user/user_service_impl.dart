@@ -26,4 +26,18 @@ class UserServiceImpl implements UserService {
       throw Failure(message: 'Erro ao criar usuário no FirebaseAuth');
     }
   }
+
+  @override
+  Future<void> login(String login, String password) async {
+    try {
+      final accessToken = await _userRepository.login(login, password);
+      _log.info('AccessToken: $accessToken');
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: login, password: password);
+      _log.info('Login realizado com sucesso');
+    } on FirebaseAuthException catch (e, s) {
+      _log.error('Erro ao fazer login no Firebase Auth', e, s);
+      throw Failure(message: 'Erro ao fazer login no Firebase');
+    }
+  }
 }
