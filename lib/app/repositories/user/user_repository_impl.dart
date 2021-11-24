@@ -8,6 +8,7 @@ import 'package:cuidapet_mobile/app/core/push_notification/push_notification.dar
 import 'package:cuidapet_mobile/app/core/rest_client/rest_client.dart';
 import 'package:cuidapet_mobile/app/core/rest_client/rest_client_exception.dart';
 import 'package:cuidapet_mobile/app/models/confirm_login_model.dart';
+import 'package:cuidapet_mobile/app/models/user_model.dart';
 
 import './user_repository.dart';
 
@@ -79,6 +80,17 @@ class UserRepositoryImpl implements UserRepository {
       return ConfirmLoginModel.fromMap(result.data);
     } on RestClientException {
       throw Failure(message: 'Erro ao confirmar login');
+    }
+  }
+
+  @override
+  Future<UserModel> getUserLogged() async {
+    try {
+      final result = await _restClient.auth().get('/user/');
+      return UserModel.fromMap(result.data);
+    } on RestClientException catch (e, s) {
+      _log.error('Erro ao buscar dados do usuário', e, s);
+      throw Failure(message: 'Errro ao buscar dados do usuário');
     }
   }
 }
