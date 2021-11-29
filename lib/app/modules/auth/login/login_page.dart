@@ -4,10 +4,12 @@ import 'package:cuidapet_mobile/app/core/ui/extensions/size_screen_extension.dar
 import 'package:cuidapet_mobile/app/core/ui/extensions/theme_extension.dart';
 import 'package:cuidapet_mobile/app/core/ui/widgets/loader.dart';
 import 'package:cuidapet_mobile/app/core/ui/widgets/messages.dart';
+import 'package:cuidapet_mobile/app/modules/auth/login/login_controller.dart';
 import 'package:cuidapet_mobile/app/modules/auth/login/widget/login_form.dart';
 import 'package:cuidapet_mobile/app/modules/auth/login/widget/login_register_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,14 +18,14 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-
+class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(top: 1.statusBarHeight + 30, left: 20, right: 20),
+        padding:
+            EdgeInsets.only(top: 1.statusBarHeight + 30, left: 20, right: 20),
         width: 1.sw,
         height: 1.sh,
         child: Column(
@@ -44,11 +46,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('ou', style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.sp,
-                    color: context.primaryColor
-                  ),),
+                  child: Text(
+                    'ou',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.sp,
+                        color: context.primaryColor),
+                  ),
                 ),
                 Expanded(
                   child: Divider(
@@ -58,7 +62,9 @@ class _LoginPageState extends State<LoginPage> {
                 )
               ],
             ),
-            const LoginRegisterButtons()
+            LoginRegisterButtons(
+              loginController: controller,
+            )
           ],
         ),
       ),

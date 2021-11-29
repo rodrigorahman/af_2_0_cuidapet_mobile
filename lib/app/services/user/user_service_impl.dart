@@ -3,6 +3,9 @@ import 'package:cuidapet_mobile/app/core/helpers/constants.dart';
 import 'package:cuidapet_mobile/app/core/helpers/logger.dart';
 import 'package:cuidapet_mobile/app/core/local_storages/local_security_storage.dart';
 import 'package:cuidapet_mobile/app/core/local_storages/local_storage.dart';
+import 'package:cuidapet_mobile/app/models/social_network_model.dart';
+import 'package:cuidapet_mobile/app/models/social_type.dart';
+import 'package:cuidapet_mobile/app/repositories/social/social_repository.dart';
 import 'package:cuidapet_mobile/app/repositories/user/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -13,16 +16,19 @@ class UserServiceImpl implements UserService {
   final Logger _log;
   final LocalStorage _localStorage;
   final LocalSecurityStorage _localSecurityStorage;
+  final SocialRepository _socialRepository;
 
   UserServiceImpl(
       {required UserRepository userRepository,
       required Logger log,
       required LocalStorage localStorage,
-      required LocalSecurityStorage localSecurityStorage})
+      required LocalSecurityStorage localSecurityStorage,
+      required SocialRepository socialRepository})
       : _userRepository = userRepository,
         _log = log,
         _localStorage = localStorage,
-        _localSecurityStorage = localSecurityStorage;
+        _localSecurityStorage = localSecurityStorage,
+        _socialRepository = socialRepository;
 
   @override
   Future<void> register(String email, String password) async {
@@ -55,7 +61,8 @@ class UserServiceImpl implements UserService {
 
   Future<void> _getUserData() async {
     final userLogged = await _userRepository.getUserLogged();
-    await _localStorage.write<String>(Constants.USER_DATA_KEY, userLogged.toJson());
+    await _localStorage.write<String>(
+        Constants.USER_DATA_KEY, userLogged.toJson());
   }
 
   Future<void> _saveAccessToken(String accessToken) =>
@@ -67,4 +74,37 @@ class UserServiceImpl implements UserService {
     await _localSecurityStorage.write(
         Constants.REFRESH_TOKEN_KEY, confirmModel.refreshToken);
   }
+
+  @override
+  Future<void> socialLogin(SocialType socialType) async {
+
+    // Declaracoes
+    String? email;
+
+    try {
+      final SocialNetworkModel socialModel;
+      final AuthCredential authCredential;
+      final firebaseAuth = FirebaseAuth.instance;
+      
+      switch (socialType) {
+        case SocialType.google:
+          socialModel = await _socialRepository.googleLogin();
+          authCredential = GoogleAuthProvider.credential(
+            accessToken: socialModel.accessToken,
+            idToken: socialModel.id,
+          );
+          break;
+      }
+      // Processo comum do login com rede social
+      await firebaseAuth.signInWithCredential(authCredential);
+      final accessToken = await _userRepository.socialLogin(socialModel);
+      await _saveAccessToken(accessToken);
+      await _confirmLogin();
+      await _getUserData();
+    } on FirebaseAuthException catch (e, s) {
+      _log.error('Erro ao realizar login no Firebase', e, s);
+      throw Failure(message: 'Erro ao realizar login no Firebase');
+    }
+  }
+
 }

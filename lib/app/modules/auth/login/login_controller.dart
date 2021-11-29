@@ -2,7 +2,8 @@ import 'package:cuidapet_mobile/app/core/exceptions/user_notfound_exception.dart
 import 'package:cuidapet_mobile/app/core/helpers/logger.dart';
 import 'package:cuidapet_mobile/app/core/ui/widgets/loader.dart';
 import 'package:cuidapet_mobile/app/core/ui/widgets/messages.dart';
-import 'package:cuidapet_mobile/services/user/user_service.dart';
+import 'package:cuidapet_mobile/app/models/social_type.dart';
+import 'package:cuidapet_mobile/app/services/user/user_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'dart:developer' as developer;
@@ -34,6 +35,19 @@ abstract class _LoginControllerBase with Store {
       Loader.hide();
       _log.error('Erro ao realizar login', e, s);
       Messages.alert('Erro ao realizar login tente novamente mais tarde!!!');
+    }
+  }
+
+  Future<void> socialLogin(SocialType loginType) async {
+    try {
+      Loader.show();
+      await _userService.socialLogin(loginType);
+      Loader.hide();
+      Modular.to.navigate('/auth/');
+    } catch (e, s) {
+     Loader.hide();
+     _log.error('Erro ao realizar login', e, s);
+     Messages.alert('Erro ao realizar login');
     }
   }
 }

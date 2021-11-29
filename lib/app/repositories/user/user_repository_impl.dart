@@ -8,6 +8,7 @@ import 'package:cuidapet_mobile/app/core/push_notification/push_notification.dar
 import 'package:cuidapet_mobile/app/core/rest_client/rest_client.dart';
 import 'package:cuidapet_mobile/app/core/rest_client/rest_client_exception.dart';
 import 'package:cuidapet_mobile/app/models/confirm_login_model.dart';
+import 'package:cuidapet_mobile/app/models/social_network_model.dart';
 import 'package:cuidapet_mobile/app/models/user_model.dart';
 
 import './user_repository.dart';
@@ -91,6 +92,25 @@ class UserRepositoryImpl implements UserRepository {
     } on RestClientException catch (e, s) {
       _log.error('Erro ao buscar dados do usuário', e, s);
       throw Failure(message: 'Errro ao buscar dados do usuário');
+    }
+  }
+
+  @override
+  Future<String> socialLogin(SocialNetworkModel socialModel) async {
+    try {
+      final result = await _restClient.unauth().post('/auth/', data: {
+        'login': socialModel.email,
+        'social_login': true,
+        'avatar': socialModel.avatar,
+        'social_type': 'Google',
+        'social_key': socialModel.id,
+        'supplier_user': false
+      });
+
+      return result.data['access_token'];
+    } on RestClientException catch (e, s) {
+      _log.error('Erro ao realizar login', e, s);
+      throw Failure(message: 'Erro ao realizar login');
     }
   }
 }
