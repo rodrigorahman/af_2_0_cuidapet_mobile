@@ -19,6 +19,8 @@ class AuthHomePage extends StatefulWidget {
 
 class _AuthHomePageState extends State<AuthHomePage> {
 
+  late ReactionDisposer disp;
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +36,12 @@ class _AuthHomePageState extends State<AuthHomePage> {
       widget._authStore.loadUser();
     });
 
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    disp();
   }
 
   @override

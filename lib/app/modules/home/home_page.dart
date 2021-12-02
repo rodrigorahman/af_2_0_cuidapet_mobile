@@ -1,4 +1,6 @@
+import 'package:cuidapet_mobile/app/modules/core/auth/auth_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -14,7 +16,14 @@ class _HomePageState extends State<HomePage> {
    Widget build(BuildContext context) {
        return Scaffold(
            appBar: AppBar(title: const Text('Home'),),
-           body: Container(),
+           body: Center(
+             child: TextButton(
+               onPressed: (){
+                 Modular.get<AuthStore>().logout();
+               },
+               child: const Text('Logout'),
+             ),
+           ),
        );
   }
 }
