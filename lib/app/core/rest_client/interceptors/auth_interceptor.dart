@@ -75,7 +75,7 @@ class AuthInterceptor extends Interceptor {
     _log.append('################## Error LOG ################ ');
     _log.append('Response error: ${err.response}');
 
-    if (err.requestOptions.extra.containsKey('auth_required')) {
+    if (err.requestOptions.extra['auth_required'] == true) {
       final statusCode = err.response?.statusCode;
       if (statusCode == 403 || statusCode == 401) {
         // processo de refreshToken
@@ -83,7 +83,7 @@ class AuthInterceptor extends Interceptor {
         _log.append(
             '################## Access Token Atualizado ################ ');
         _log.closeAppend();
-        _retryRequest(err, handler);
+        return _retryRequest(err, handler);
       }
     }
     _log.append('################## Error LOG ################ ');
