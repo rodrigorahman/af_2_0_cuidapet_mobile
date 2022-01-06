@@ -2,7 +2,6 @@ import 'package:cuidapet_mobile/app/core/ui/extensions/size_screen_extension.dar
 import 'package:cuidapet_mobile/app/models/user_model.dart';
 import 'package:cuidapet_mobile/app/modules/core/auth/auth_store.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 

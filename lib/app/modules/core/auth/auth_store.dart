@@ -2,7 +2,6 @@ import 'package:cuidapet_mobile/app/core/helpers/constants.dart';
 import 'package:cuidapet_mobile/app/core/local_storages/local_storage.dart';
 import 'package:cuidapet_mobile/app/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 part 'auth_store.g.dart';
 

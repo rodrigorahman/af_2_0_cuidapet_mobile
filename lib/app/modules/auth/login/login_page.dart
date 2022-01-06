@@ -1,14 +1,9 @@
-import 'package:cuidapet_mobile/app/core/helpers/logger.dart';
-import 'package:cuidapet_mobile/app/core/push_notification/push_notification.dart';
 import 'package:cuidapet_mobile/app/core/ui/extensions/size_screen_extension.dart';
 import 'package:cuidapet_mobile/app/core/ui/extensions/theme_extension.dart';
-import 'package:cuidapet_mobile/app/core/ui/widgets/loader.dart';
-import 'package:cuidapet_mobile/app/core/ui/widgets/messages.dart';
 import 'package:cuidapet_mobile/app/modules/auth/login/login_controller.dart';
 import 'package:cuidapet_mobile/app/modules/auth/login/widget/login_form.dart';
 import 'package:cuidapet_mobile/app/modules/auth/login/widget/login_register_buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPage extends StatefulWidget {

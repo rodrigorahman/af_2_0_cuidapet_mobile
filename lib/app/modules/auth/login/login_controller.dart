@@ -8,7 +8,6 @@ import 'package:cuidapet_mobile/app/models/social_type.dart';
 import 'package:cuidapet_mobile/app/services/user/user_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'dart:developer' as developer;
 part 'login_controller.g.dart';
 
 class LoginController = _LoginControllerBase with _$LoginController;
